@@ -24,20 +24,57 @@ class Popsize extends Module
         $this->description = $this->trans('Popsize sizing widget – provide smart size recommendations and reduce returns.', [], 'Modules.Mymodule.Admin');
 
         $this->confirmUninstall = $this->trans('Are you sure you want to uninstall?', [], 'Modules.Mymodule.Admin');
-
-        if (!Configuration::get('MYMODULE_NAME')) {
-            $this->warning = $this->trans('No name provided', [], 'Modules.Mymodule.Admin');
-        }
     }
 
     public function install()
     {
-        return parent::install();
+        if (parent::install() && $this->registerHook('displayBackOfficeHeader') && $this->registerHook('displayHeader')) {
+            return true;
+        }
+        return false;
     }
 
     public function uninstall()
     {
         return parent::uninstall();
     }
+
+    public function getContent()
+    {
+        if (Tools::isSubmit('savePopsizeConfig')) {
+            $partnerId = Tools::getValue('PARTNER_ID');
+            Configuration::updateValue('POPSIZE_PARTNER_ID', $partnerId);
+        }
+    
+        $this->context->smarty->assign([
+            'partner_id' => Configuration::get('POPSIZE_PARTNER_ID'),
+            'token' => Tools::getAdminTokenLite('AdminModules') // Add token here
+        ]);
+    
+        return $this->display(__FILE__, 'views/templates/admin/configure.tpl');
+    }
+    
+
+    public function hookDisplayBackOfficeHeader($params)
+    {
+        $partnerId = Configuration::get('POPSIZE_PARTNER_ID');
+
+        if (empty($partnerId)) {
+            $this->context->controller->warnings[] = $this->l('Please configure your Popsize account.')." <a href='https://popsize-dashboard.vercel.app' target='_blank'>Click here</a>";
+        }
+    }
+
+    public function hookDisplayHeader($params)
+    {
+        $partnerId = Configuration::get('POPSIZE_PARTNER_ID');
+
+        if (!empty($partnerId)) {
+            $this->context->smarty->assign([
+                'partner_id' => $partnerId
+            ]);
+            return $this->display(__FILE__, 'views/templates/hook/head.tpl');
+        }
+    }
+
 
 }

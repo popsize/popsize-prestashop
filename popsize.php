@@ -64,9 +64,27 @@ class Popsize extends Module
         }
     }
 
+    // public function hookDisplayHeader($params)
+    // {
+    //     $partnerId = Configuration::get('POPSIZE_PARTNER_ID');
+
+    //     if (!empty($partnerId)) {
+    //         $this->context->smarty->assign([
+    //             'partner_id' => $partnerId
+    //         ]);
+    //         return $this->display(__FILE__, 'views/templates/hook/head.tpl');
+    //     }
+    // }
+
     public function hookDisplayHeader($params)
     {
         $partnerId = Configuration::get('POPSIZE_PARTNER_ID');
+
+        // Only run this on the product page
+        $controller = Dispatcher::getInstance()->getController();
+        if ($controller !== 'product') {
+            return;
+        }
 
         if (!empty($partnerId)) {
             $this->context->smarty->assign([

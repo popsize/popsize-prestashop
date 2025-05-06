@@ -68,6 +68,12 @@ class Popsize extends Module
     {
         $partnerId = Configuration::get('POPSIZE_PARTNER_ID');
 
+        // Only run this on the product page
+        $controller = Dispatcher::getInstance()->getController();
+        if ($controller !== 'product') {
+            return;
+        }
+
         if (!empty($partnerId)) {
             $this->context->smarty->assign([
                 'partner_id' => $partnerId

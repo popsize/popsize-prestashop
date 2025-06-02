@@ -60,7 +60,7 @@ class Popsize extends Module
         $partnerId = Configuration::get('POPSIZE_PARTNER_ID');
 
         if (empty($partnerId)) {
-            $this->context->controller->warnings[] = $this->l('Please configure your Popsize account.')." <a href='https://popsize-dashboard.vercel.app' target='_blank'>Click here</a>";
+            $this->context->controller->warnings[] = $this->l('Please configure your Popsize account.')." <a href='https://partners.popsize.ai' target='_blank'>Click here</a>";
         }
     }
 

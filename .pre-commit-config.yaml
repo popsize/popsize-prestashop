@@ -9,18 +9,18 @@ repos:
 
       # - id: php-header-stamp
       #   name: PHP Header Stamp
-      #   entry: php ../../vendor/bin/header-stamp --license=agpl.txt --exclude=vendor,tests,_dev
+      #   entry: php vendor/bin/header-stamp --license=agpl.txt --exclude=vendor,tests,_dev
       #   language: system
       #   types: [php]
 
       - id: php-cs-fixer
         name: PHP-CS-Fixer
-        entry: php ../../vendor/bin/php-cs-fixer fix --diff --config=.php-cs-fixer.dist.php
+        entry: php vendor/bin/php-cs-fixer fix --diff --config=.php-cs-fixer.dist.php
         language: system
         types: [php]
 
       # - id: phpstan
       #   name: PHPStan
-      #   entry: ../../vendor/bin/phpstan analyse --no-progress --level=max src
+      #   entry: vendor/bin/phpstan analyse --no-progress --level=max src
       #   language: system
       #   pass_filenames: false

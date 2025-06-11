@@ -1,8 +1,8 @@
 <?php
+
 if (!defined('_PS_VERSION_')) {
     exit;
 }
-
 
 class Popsize extends Module
 {
@@ -32,6 +32,7 @@ class Popsize extends Module
         if (parent::install() && $this->registerHook('displayBackOfficeHeader') && $this->registerHook('displayHeader')) {
             return true;
         }
+
         return false;
     }
 
@@ -46,22 +47,21 @@ class Popsize extends Module
             $partnerId = Tools::getValue('PARTNER_ID');
             Configuration::updateValue('POPSIZE_PARTNER_ID', $partnerId);
         }
-    
+
         $this->context->smarty->assign([
             'partner_id' => Configuration::get('POPSIZE_PARTNER_ID'),
-            'token' => Tools::getAdminTokenLite('AdminModules') // Add token here
+            'token' => Tools::getAdminTokenLite('AdminModules'), // Add token here
         ]);
-    
+
         return $this->display(__FILE__, 'views/templates/admin/configure.tpl');
     }
-    
 
     public function hookDisplayBackOfficeHeader($params)
     {
         $partnerId = Configuration::get('POPSIZE_PARTNER_ID');
 
         if (empty($partnerId)) {
-            $this->context->controller->warnings[] = $this->l('Please configure your Popsize account.')." <a href='https://partners.popsize.ai' target='_blank'>Click here</a>";
+            $this->context->controller->warnings[] = $this->l('Please configure your Popsize account.') . " <a href='https://partners.popsize.ai' target='_blank'>Click here</a>";
         }
     }
 
@@ -77,11 +77,10 @@ class Popsize extends Module
 
         if (!empty($partnerId)) {
             $this->context->smarty->assign([
-                'partner_id' => $partnerId
+                'partner_id' => $partnerId,
             ]);
+
             return $this->display(__FILE__, 'views/templates/hook/head.tpl');
         }
     }
-
-
 }

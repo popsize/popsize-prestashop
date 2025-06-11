@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: php-lint
+        name: PHP Syntax Checker
+        entry: php -l
+        language: system
+        types: [php]

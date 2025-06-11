@@ -9,7 +9,7 @@ repos:
 
       - id: php-cs-fixer
         name: PHP-CS-Fixer
-        entry: php vendor/bin/php-cs-fixer fix modules/popsize --dry-run --diff
+        entry: php ../../vendor/bin/php-cs-fixer fix modules/popsize --dry-run --diff
         language: system
         types: [php]
 

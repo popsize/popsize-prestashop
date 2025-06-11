@@ -108,7 +108,5 @@ class Popsize extends Module
 
             return $this->display(__FILE__, 'views/templates/hook/head.tpl');
         }
-
-        return null;
     }
 }

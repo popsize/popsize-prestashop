@@ -12,7 +12,7 @@ git clone git@github.com:popsize/popsize-prestashop.git popsize
 
 ## Dev
 ```
-cd modules/popsize
+cd popsize
 apt-get update && \
 apt-get install -y python3 python3-venv
 python3 -m venv /opt/venv

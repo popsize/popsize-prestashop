@@ -18,5 +18,17 @@ PATH="/root/.composer/vendor/bin:${PATH}"
 composer global require phpstan/phpstan \
 && composer global require friendsofphp/php-cs-fixer
 
+cd ../..
+composer require --dev prestashop/php-dev-tools
+composer require --dev friendsofphp/php-cs-fixer
+
+cd modules/popsize
+php ../../vendor/bin/prestashop-coding-standards cs-fixer:init
 /opt/venv/bin/pre-commit install
+```
+
+## Pre-commit check
+```
+# From root of the docker:
+php vendor/bin/php-cs-fixer fix modules/popsize --dry-run --diff
 ```

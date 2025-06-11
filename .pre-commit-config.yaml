@@ -2,7 +2,19 @@ repos:
   - repo: local
     hooks:
       - id: php-lint
-        name: PHP Syntax Checker
+        name: PHP Syntax Check
         entry: php -l
         language: system
         types: [php]
+
+      # - id: php-cs-fixer
+      #   name: PHP-CS-Fixer
+      #   entry: php vendor/bin/php-cs-fixer fix modules/popsize --dry-run --diff
+      #   language: system
+      #   types: [php]
+
+      # - id: phpstan
+      #   name: PHPStan
+      #   entry: ../../vendor/bin/phpstan analyse --no-progress --level=max src
+      #   language: system
+      #   pass_filenames: false

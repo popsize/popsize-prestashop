@@ -1,4 +1,4 @@
-# Popsize Prestahsop Module
+# Popsize Prestashop Module
 
 ## Install
 - Clone this repo inside your prestashop `/modules` folder

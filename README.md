@@ -27,6 +27,7 @@ composer require --dev friendsofphp/php-cs-fixer
 composer require --dev prestashop/header-stamp
 
 php vendor/bin/prestashop-coding-standards cs-fixer:init
+# php vendor/bin/prestashop-coding-standards phpstan:init  # ALREADY DONE AND MODIFIED
 /opt/venv/bin/pre-commit install
 ```
 

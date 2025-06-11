@@ -21,6 +21,6 @@ repos:
 
       # - id: phpstan
       #   name: PHPStan
-      #   entry: vendor/bin/phpstan analyse --no-progress --level=max src
+      #   entry: _PS_ROOT_DIR_=/var/www/html vendor/bin/phpstan analyse --no-progress --configuration=tests/phpstan/phpstan.neon
       #   language: system
       #   pass_filenames: false

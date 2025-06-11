@@ -8,7 +8,9 @@
 ```
 cd modules/popsize
 apt-get update && \
-apt-get install -y python3 python3-venv git
+apt-get install -y python3 python3-venv git locales
+# dpkg-reconfigure locales
+# Then select en_US.UTF-8 in the menu.
 python3 -m venv /opt/venv
 source /opt/venv/bin/activate
 /opt/venv/bin/pip install pre-commit
@@ -30,5 +32,7 @@ php ../../vendor/bin/prestashop-coding-standards cs-fixer:init
 ## Pre-commit check
 ```
 # From root of the docker:
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 php vendor/bin/php-cs-fixer fix modules/popsize --dry-run --diff
 ```

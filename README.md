@@ -32,8 +32,5 @@ php ../../vendor/bin/prestashop-coding-standards cs-fixer:init
 
 ## Pre-commit check
 ```
-# From root of the docker:
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-php vendor/bin/php-cs-fixer fix modules/popsize --dry-run --diff
+php ../../vendor/bin/header-stamp --license=agpl.txt --exclude=vendor,tests,_dev
 ```

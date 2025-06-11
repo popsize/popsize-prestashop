@@ -37,13 +37,13 @@ class Popsize extends Module
 
         parent::__construct();
 
-        $this->displayName = $this->trans('Popsize', [], 'Modules.Mymodule.Admin');
-        $this->description = $this->trans('Popsize sizing widget – provide smart size recommendations and reduce returns.', [], 'Modules.Mymodule.Admin');
+        $this->displayName = (string) $this->trans('Popsize', [], 'Modules.Mymodule.Admin');
+        $this->description = (string) $this->trans('Popsize sizing widget – provide smart size recommendations and reduce returns.', [], 'Modules.Mymodule.Admin');
 
-        $this->confirmUninstall = $this->trans('Are you sure you want to uninstall?', [], 'Modules.Mymodule.Admin');
+        $this->confirmUninstall = (string) $this->trans('Are you sure you want to uninstall?', [], 'Modules.Mymodule.Admin');
     }
 
-    public function install()
+    public function install(): bool
     {
         if (parent::install() && $this->registerHook('displayBackOfficeHeader') && $this->registerHook('displayHeader')) {
             return true;
@@ -52,51 +52,63 @@ class Popsize extends Module
         return false;
     }
 
-    public function uninstall()
+    public function uninstall(): bool
     {
         return parent::uninstall();
     }
 
-    public function getContent()
+    public function getContent(): string
     {
         if (Tools::isSubmit('savePopsizeConfig')) {
             $partnerId = Tools::getValue('PARTNER_ID');
             Configuration::updateValue('POPSIZE_PARTNER_ID', $partnerId);
         }
 
-        $this->context->smarty->assign([
-            'partner_id' => Configuration::get('POPSIZE_PARTNER_ID'),
-            'token' => Tools::getAdminTokenLite('AdminModules'), // Add token here
-        ]);
+        if ($this->context->smarty !== null) {
+            $this->context->smarty->assign([
+                'partner_id' => Configuration::get('POPSIZE_PARTNER_ID'),
+                'token' => Tools::getAdminTokenLite('AdminModules'), // Add token here
+            ]);
+        }
 
         return $this->display(__FILE__, 'views/templates/admin/configure.tpl');
     }
 
-    public function hookDisplayBackOfficeHeader($params)
+    /**
+     * @param array $params
+     */
+    public function hookDisplayBackOfficeHeader(array $params): void
     {
         $partnerId = Configuration::get('POPSIZE_PARTNER_ID');
 
-        if (empty($partnerId)) {
+        if (empty($partnerId) && $this->context->controller !== null && property_exists($this->context->controller, 'warnings')) {
             $this->context->controller->warnings[] = $this->l('Please configure your Popsize account.') . " <a href='https://partners.popsize.ai' target='_blank'>Click here</a>";
         }
     }
 
-    public function hookDisplayHeader($params)
+    /**
+     * @param array $params
+     *
+     * @return string|null
+     */
+    public function hookDisplayHeader(array $params): ?string
     {
         $partnerId = Configuration::get('POPSIZE_PARTNER_ID');
 
         // Only run this on the product page
         $controller = Dispatcher::getInstance()->getController();
         if ($controller !== 'product') {
-            return;
+            return null;
         }
 
-        if (!empty($partnerId)) {
+        if (!empty($partnerId) && $this->context->smarty !== null) {
             $this->context->smarty->assign([
                 'partner_id' => $partnerId,
             ]);
 
             return $this->display(__FILE__, 'views/templates/hook/head.tpl');
         }
+
+        return null;
     }
 }

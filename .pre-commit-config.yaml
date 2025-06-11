@@ -7,11 +7,11 @@ repos:
         language: system
         types: [php]
 
-      - id: php-header-stamp
-        name: PHP Header Stamp
-        entry: php vendor/bin/header-stamp --license=agpl.txt --exclude=vendor,tests,_dev
-        language: system
-        types: [php]
+      # - id: php-header-stamp
+      #   name: PHP Header Stamp
+      #   entry: php vendor/bin/header-stamp --license=agpl.txt --exclude=vendor,tests,_dev
+      #   language: system
+      #   types: [php]
 
       - id: php-cs-fixer
         name: PHP-CS-Fixer

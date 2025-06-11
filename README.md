@@ -6,7 +6,7 @@
 apt-get update && \
 apt-get install -y git
 cd modules
-git clone xxxxxxxxxxxxxxxx popsize
+git clone git@github.com:popsize/popsize-prestashop.git popsize
 ```
 - Install the module inside `Modules > Module Manager` in your admin panel
 

@@ -2,6 +2,12 @@
 
 ## Install
 - Clone this repo inside your prestashop `/modules` folder
+```
+apt-get update && \
+apt-get install -y git
+cd modules
+git clone xxxxxxxxxxxxxxxx
+```
 - Install the module inside `Modules > Module Manager` in your admin panel
 
 ## Dev

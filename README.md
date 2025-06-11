@@ -34,4 +34,5 @@ php vendor/bin/prestashop-coding-standards cs-fixer:init
 ## Pre-commit check
 ```
 php vendor/bin/header-stamp --license=agpl.txt --exclude=vendor,tests,_dev
+_PS_ROOT_DIR_=/var/www/html vendor/bin/phpstan analyse --configuration=tests/phpstan/phpstan.neon
 ```

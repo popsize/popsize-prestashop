@@ -3,6 +3,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
+
 class Popsize extends Module
 {
     public function __construct()

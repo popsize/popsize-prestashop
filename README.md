@@ -23,6 +23,7 @@ composer global require phpstan/phpstan \
 cd ../..
 composer require --dev prestashop/php-dev-tools
 composer require --dev friendsofphp/php-cs-fixer
+composer require --dev prestashop/header-stamp
 
 cd modules/popsize
 php ../../vendor/bin/prestashop-coding-standards cs-fixer:init

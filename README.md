@@ -18,7 +18,11 @@ apt-get install -y python3 python3-venv
 python3 -m venv /opt/venv
 source /opt/venv/bin/activate
 /opt/venv/bin/pip install pre-commit
+```
 
+## Composer & pre-commit checks
+```
+# FROM THERE, BELOW BREAKS EVERYTHING IN PRESTASHOP ADMIN PANEL... I DON'T KNOW WHY
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 PATH="/root/.composer/vendor/bin:${PATH}"
 composer require --dev phpstan/phpstan
@@ -29,10 +33,4 @@ composer require --dev prestashop/header-stamp
 php vendor/bin/prestashop-coding-standards cs-fixer:init
 # php vendor/bin/prestashop-coding-standards phpstan:init  # ALREADY DONE AND MODIFIED
 /opt/venv/bin/pre-commit install
-```
-
-## Pre-commit check
-```
-php vendor/bin/header-stamp --license=agpl.txt --exclude=vendor,tests,_dev
-_PS_ROOT_DIR_=/var/www/html vendor/bin/phpstan analyse --configuration=tests/phpstan/phpstan.neon
 ```

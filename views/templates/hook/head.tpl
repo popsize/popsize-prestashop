@@ -15,7 +15,7 @@
  * @license   https://www.gnu.org/licenses/agpl-3.0.html GNU Affero General Public License v3.0
  *}
 {if $partner_id}
-    <link rel="stylesheet" href="https://engine.popsize.ai/latest/static/css/main.latest.css" />
+    <link rel="stylesheet" href="https://engine.popsize.ai/latest/static/css/main.latest.css" crossorigin="anonymous"/>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var script = document.createElement("script");

@@ -45,18 +45,15 @@ fi
 
 # Create build directories
 print_status "Creating build directories..."
-mkdir -p "$TEMP_DIR"
+mkdir -p "$TEMP_DIR/$MODULE_NAME"
 mkdir -p "$OUTPUT_DIR"
 
 # Files and directories to include in the distribution
 FILES_TO_INCLUDE=(
     "views/"
-    "tests/"
     ".gitignore"
     ".php-cs-fixer.dist.php"
     "agpl.txt"
-    "composer.json"
-    "composer.lock"
     "index.php"
     "LICENSE"
     "logo.png"
@@ -71,10 +68,10 @@ for item in "${FILES_TO_INCLUDE[@]}"; do
         print_status "Copying $item..."
         if [ -d "$item" ]; then
             # It's a directory, copy recursively
-            cp -r "$item" "$TEMP_DIR/"
+            cp -r "$item" "$TEMP_DIR/$MODULE_NAME/"
         else
             # It's a file, copy it
-            cp "$item" "$TEMP_DIR/"
+            cp "$item" "$TEMP_DIR/$MODULE_NAME/"
         fi
     else
         print_warning "File/directory $item not found, skipping..."
@@ -85,7 +82,7 @@ done
 print_status "Verifying required files..."
 REQUIRED_FILES=("popsize.php" "index.php" "LICENSE")
 for file in "${REQUIRED_FILES[@]}"; do
-    if [ ! -f "$TEMP_DIR/$file" ]; then
+    if [ ! -f "$TEMP_DIR/$MODULE_NAME/$file" ]; then
         print_error "Required file $file is missing!"
         exit 1
     fi
@@ -94,7 +91,7 @@ done
 # Create the zip file
 print_status "Creating zip file..."
 cd "$TEMP_DIR"
-zip -r "../dist/$ZIP_NAME" . -x "*.DS_Store" "*Thumbs.db" "*.git*"
+zip -r "../dist/$ZIP_NAME" "$MODULE_NAME" -x "*.DS_Store" "*Thumbs.db" "*.git*"
 cd "$SCRIPT_DIR"
 
 # Verify the zip was created

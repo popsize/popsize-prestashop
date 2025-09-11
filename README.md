@@ -4,7 +4,7 @@
 - Clone this repo inside your prestashop `/modules` folder
 ```
 apt-get update && \
-apt-get install -y git
+apt-get install -y git zip
 cd modules
 git clone git@github.com:popsize/popsize-prestashop.git popsize
 ```
@@ -20,9 +20,27 @@ source /opt/venv/bin/activate
 /opt/venv/bin/pip install pre-commit
 ```
 
-## Composer & pre-commit checks
+## Build & deploy
+
+```bash
+cd popsize
+./build.sh
 ```
-# FROM THERE, BELOW BREAKS EVERYTHING IN PRESTASHOP ADMIN PANEL... I DON'T KNOW WHY
+
+This will create a `build/popsize.zip` file containing only the necessary files for distribution:
+- `views/` - Template files
+- `agpl.txt` - License file
+- `index.php` - Security file
+- `LICENSE` - License text
+- `logo.png` - Module logo
+- `popsize.php` - Main module file
+Files can be modified to include/exclude other files as needed in the `build.sh` script.
+
+The zip file can be uploaded directly to PrestaShop's Module Manager for installation.
+
+## OLD: Composer & pre-commit checks
+```
+# FROM THERE, BELOW BREAKS EVERYTHING IN PRESTASHOP ADMIN PANEL...
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 PATH="/root/.composer/vendor/bin:${PATH}"
 composer require --dev phpstan/phpstan

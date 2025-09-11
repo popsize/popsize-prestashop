@@ -15,13 +15,6 @@
  * @license   https://www.gnu.org/licenses/agpl-3.0.html GNU Affero General Public License v3.0
  *}
 {if $partner_id}
-    <link rel="stylesheet" href="https://engine.popsize.ai/latest/static/css/main.latest.css" crossorigin="anonymous"/>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var script = document.createElement("script");
-            script.src = "https://engine.popsize.ai/latest/static/js/main.latest.js";
-            script.setAttribute("data-partner-id", "{$partner_id}");
-            document.body.appendChild(script);
-        });
-    </script>
+    <link rel="stylesheet" href="https://engine.popsize.ai/2.0.0/button.css" crossorigin="anonymous"/>
+    <script src="https://engine.popsize.ai/2.0.0/button.js" data-partner-id="{$partner_id}"></script>
 {/if}

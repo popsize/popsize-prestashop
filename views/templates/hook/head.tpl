@@ -16,5 +16,25 @@
  *}
 {if $partner_id}
     <link rel="stylesheet" href="https://engine.popsize.ai/2.0.0/button.css" crossorigin="anonymous"/>
+    <script>
+        (function () {
+            function addWidgetContainer() {
+                var target = document.querySelector('.product-variants');
+                if (target) {
+                    var widgetContainer = document.createElement('div');
+                    widgetContainer.id = 'popsize-widget-container';
+                    target.parentNode.insertBefore(widgetContainer, target);
+                }
+            }
+
+            if (document.readyState === 'loading') {
+                // DOM is still loading, attach the event listener
+                document.addEventListener('DOMContentLoaded', addWidgetContainer);
+            } else {
+                // DOM is already loaded, execute immediately
+                addWidgetContainer();
+            }
+        })();
+    </script>
     <script src="https://engine.popsize.ai/2.0.0/button.js" data-partner-id="{$partner_id}"></script>
 {/if}

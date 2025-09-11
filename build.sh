@@ -51,7 +51,12 @@ mkdir -p "$OUTPUT_DIR"
 # Files and directories to include in the distribution
 FILES_TO_INCLUDE=(
     "views/"
+    "tests/"
+    ".gitignore"
+    ".php-cs-fixer.dist.php"
     "agpl.txt"
+    "composer.json"
+    "composer.lock"
     "index.php"
     "LICENSE"
     "logo.png"

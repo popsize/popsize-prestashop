@@ -15,7 +15,7 @@
  * @license   https://www.gnu.org/licenses/agpl-3.0.html GNU Affero General Public License v3.0
  *}
 {if $partner_id}
-    <link rel="stylesheet" href="https://engine.popsize.ai/2.0.0/button.css" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://engine.popsize.ai/latest/button.css" crossorigin="anonymous"/>
     <script>
         (function () {
             function addWidgetContainer() {
@@ -36,5 +36,5 @@
             }
         })();
     </script>
-    <script src="https://engine.popsize.ai/2.0.0/button.js" data-partner-id="{$partner_id}"></script>
+    <script src="https://engine.popsize.ai/latest/button.js" data-partner-id="{$partner_id}"></script>
 {/if}
